@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<p>
+    Hello World!
+</p>
+
+<p>
+    <!-- look for a variable called name and set its value here -->
+    {{ name }}
+</p>
+<ul>
+    <!-- Trying to go through a data structure called a list.
+    A li element is created for each element of the data structure,
+    inside which the value of the item is set.-->
+    {% for item in list %}
+    <li>{{ item }}}</li>
+    {% endfor %}
+</ul>
+
+<ul>
+    <!-- access dictionary -->
+    {% for key, value in dict.items() %}
+    <li>{{ key }}</li>
+    <li>{{ value }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

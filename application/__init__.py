@@ -27,5 +27,8 @@ from application.tasks import models
 # get views from tasks
 from application.tasks import views
 
+# get auth
+from application.auth import models
+
 # Finally, the necessary database tables are created
 db.create_all()

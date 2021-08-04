@@ -25,6 +25,9 @@ def tasks_set_done(task_id):
 def task_create():
     form = TaskForm(request.form)
 
+    if not form.validate():
+        return render_template("new.html", form=form)
+
     # get details from form
     t = Task(form.name.data)
     t.done = form.done.data

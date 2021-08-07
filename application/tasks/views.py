@@ -2,18 +2,24 @@ from application import app, db
 from flask import render_template, request, redirect, url_for
 from application.tasks.models import Task
 from application.tasks.forms import TaskForm
+from flask_login import login_required
 
+
+# added extra login requirement
 @app.route("/tasks", methods=["GET"])
+@login_required
 def tasks_index():
-    return render_template("list.html", tasks = Task.query.all())
+    return render_template("list.html", tasks=Task.query.all())
 
 
 @app.route("/tasks/new/")
+@login_required
 def tasks_form():
     return render_template("new.html", form=TaskForm())
 
 
 @app.route("/tasks/<task_id>/", methods=["POST"])
+@login_required
 def tasks_set_done(task_id):
     t = Task.query.get(task_id)
     t.done = True
@@ -22,6 +28,7 @@ def tasks_set_done(task_id):
 
 
 @app.route("/tasks/", methods=["POST"])
+@login_required
 def task_create():
     form = TaskForm(request.form)
 

@@ -6,6 +6,13 @@
     </head>
 
     <body>
+        {% if current_user.is_authenticated %}
+        <p>
+            Logged In As: {{ current_user }}. <a href="{{ url_for('auth_logout') }}">Log Out</a>
+        </p>
+        {% else %}
+        <a href="{{ url_for('auth_login') }}">Login</a>
+        {% endif %}
         <ul>
         	<li><a href="{{ url_for('tasks_index') }}">List tasks</a></li>
 	        <li><a href="{{ url_for('tasks_form') }}">Add a task</a></li>
